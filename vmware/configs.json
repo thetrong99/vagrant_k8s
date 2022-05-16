@@ -1,0 +1,38 @@
+{
+  "provider": "vmware_desktop",
+  "os": "bento/ubuntu-20.04",
+  "username": "k8s",
+  "vm": [
+    {
+      "name": "k8s-master",
+      "type": "master",
+      "cpu": 2,
+      "memory": 4096,
+      "first_ip": "192.168.56.11"
+    },
+    {
+      "name": "k8s-worker",
+      "type": "worker",
+      "count": 2,
+      "cpu": 2,
+      "memory": 2048,
+      "first_ip": "192.168.56.21"
+    }
+  ],
+  "linked_clones": true,
+  "network": {
+    "network_type": "private_network",
+    "netmask": "255.255.255.0"
+  },
+  "files": {
+    "ssh_public_key": "k8s-training.pub",
+    "ssh_private_key": "k8s-training"
+  },
+  "scripts": {
+    "base": "base.sh",
+    "master": "master.sh",
+    "worker": "worker.sh"
+  },
+  "k8s_version": "1.22.7",
+  "pod_cidr": "10.0.255.0/16"
+}
